@@ -1,0 +1,67 @@
+{
+  "structs": {
+    "AuthorRef": {
+      "description": "Contains basic information about a single message author",
+      "fields": {
+        "username": "string; Username of author"
+      }
+    },
+    "Message": {
+      "description": "Resembles a single chat message in a room",
+      "fields": {
+        "id": "u64; Unique id for this message",
+        "text": "string; Message content",
+        "author": "struct~AuthorRef; Author who sent this message",
+        "date": "u32; UNIX timestamp (seconds) of when this message was sent"
+      }
+    },
+    "Chatroom": {
+      "description": "Resembles a single chat room",
+      "fields": {
+        "id": "u64; Unique id for this room",
+        "name": "string; Name of room",
+        "status": "enum~RoomStatus",
+        "messages": "[]struct~Message; Messages in this room"
+      }
+    },
+    "GetRoomsRequest": {
+      "description": "Parameters for a GetRooms request",
+      "fields": {
+        "withStatus": "?enum~RoomStatus; Fetch only rooms with the given status"
+      }
+    },
+    "GetRoomsResponse": {
+      "description": "Returns the chat rooms",
+      "fields": {
+        "rooms": "[]struct~Chatroom; A list of rooms"
+      }
+    },
+    "SendMessageRequest": {
+      "description": "Parameters for a SendMessage request",
+      "fields": {
+        "roomId": "u64; Room to send the message in",
+        "msg": "struct~Message; The message to send. ID field is ignored."
+      }
+    }
+  },
+  "enums": {
+    "RoomStatus": [
+      "ACTIVE",
+      "DISABLED"
+    ]
+  },
+  "routes": {
+    "GetRooms": {
+      "kind": "query",
+      "description": "Get all rooms",
+      "request": "struct~GetRoomsRequest",
+      "response": "struct~GetRoomsResponse"
+    },
+    "SendMessage": {
+      "kind": "mutation",
+      "description": "Send message in a room",
+      "request": "struct~SendMessageRequest",
+      "response": "u64; ID of created message"
+    }
+  }
+}

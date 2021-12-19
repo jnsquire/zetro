@@ -1,0 +1,17 @@
+[package]
+name = "zetro"
+version = "0.1.0"
+edition = "2021"
+description = "Strongly typed API code generator"
+repository = "https://github.com/muscache/zetro"
+readme = "README.md"
+
+[dependencies]
+serde = "1.0.130"
+serde_derive = "1.0.130"
+serde_json = "1.0.71"
+serde_repr = "0.1.7"
+convert_case = "0.4.0"
+rust-crypto = "^0.2"
+base64 = "0.13.0"
+regex = "1"

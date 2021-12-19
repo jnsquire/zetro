@@ -1,0 +1,2 @@
+cargo run -- --schema=../testing_area/schema.json --out-file=../testing_area/server/src/generated/code_generated.rs --lang=rs
+cargo run -- --schema=../testing_area/schema.json --out-file=../testing_area/client/src/generated/code_generated.ts --lang=ts
